@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 @Service
 public class BookingService {
@@ -36,5 +37,9 @@ public class BookingService {
         booking.setStatus(true);
 
         return bookingRepository.save(booking);
+    }
+
+    public List<Booking> getAllBookings() {
+        return bookingRepository.findAll();
     }
 }
