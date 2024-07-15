@@ -11,20 +11,26 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/admin/users")
+@RequestMapping
 public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping
+    @GetMapping("/admin/users")
     @PreAuthorize("hasRole('ADMIN')")
     public List<User> getAllUsers() {
         return userService.getAllUsers();
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/admin/users/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public void deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
+    }
+
+    @GetMapping("/user/getuser")
+    @PreAuthorize("hasRole('USER','ADMIN')")
+    public User getUser(@RequestParam String username){
+        return userService.getUser(username);
     }
 }
