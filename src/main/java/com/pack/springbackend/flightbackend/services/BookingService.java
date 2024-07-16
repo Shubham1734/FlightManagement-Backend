@@ -42,4 +42,8 @@ public class BookingService {
     public List<Booking> getAllBookings() {
         return bookingRepository.findAll();
     }
+
+    public void deletebooking(int id){
+        bookingRepository.deleteById(id);
+    }
 }

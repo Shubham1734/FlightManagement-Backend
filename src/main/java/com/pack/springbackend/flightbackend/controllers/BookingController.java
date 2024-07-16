@@ -22,4 +22,11 @@ public class BookingController {
     public List<Booking> getAllBookings() {
         return bookingService.getAllBookings();
     }
+
+    @DeleteMapping("/user/bookings/{id}")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    public void deletebooking(@PathVariable int id){
+        bookingService.deletebooking(id);
+    }
+
 }
